@@ -307,7 +307,7 @@ echo "Game IP:Port $ip"
 echo "Query Port: $port"
 echo "Mods: $mods"
 echo ""
-read -p $'\e[33mPress any key to launch DayZ with mods.\e[0m' foo
+read -p $'\e[33mPress 'Enter' key to launch DayZ with mods.\e[0m' foo
 #read -p "Press any key to launch DayZ with mods."  
 ################################### FIRE ################################################
 steam -applaunch 221100 "-mod=${mods}" -connect=${ip} --port ${port} -name=${nname}
