@@ -3,7 +3,8 @@
 - Tested with Debian 11 and 12.
 - Tested with the official steam package: https://wiki.debian.org/Steam
 
-Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.
+
+**Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
 
 ################################################################
