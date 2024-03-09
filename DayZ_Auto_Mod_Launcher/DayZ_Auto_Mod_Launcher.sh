@@ -180,7 +180,7 @@ query_server_api() {
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
   jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing mods data from API response"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { msg "This server is unmodded"; return; }
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo -e "\e[1;33mThis is a Vanilla Server. Launching DayZ without Mods!\e[0m"; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname}; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 
