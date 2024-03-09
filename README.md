@@ -8,10 +8,10 @@
 
 
 ################################################################
-####               DayZ_Auto_Mod_Launcher.sh                ####
+####              Mod Launchers for Dayz                ####
 ################################################################
 
-This script automatically identifies, downloading and adding the required mods to DayZ.
+Scripts that automatically identifies, downloading and adding the required mods to DayZ.
 
  </td>
   <td>
