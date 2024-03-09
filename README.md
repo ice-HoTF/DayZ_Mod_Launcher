@@ -17,7 +17,8 @@ Scripts that automatically identifies, downloading and adding the required mods 
   <td>
     <p>1: Add both scripts to your home folder.<br />   
     2: Run the 'Start_DayZ_etc script' through terminal, alias or application.desktop file.<br /> 
-    3: Follow the instructions in the terminal window.</p>
+    3: Follow the instructions in the terminal window.<br /> 
+    4: Use the README.md in the script folder for further instructions.</p>
   </td>
 </tr>
 
