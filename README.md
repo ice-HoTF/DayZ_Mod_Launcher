@@ -1,4 +1,4 @@
-- Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
+**- Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher**
 - Modded by: ice_hotf
 - Tested with Debian 11 and 12.
 - Tested with the official steam package: https://wiki.debian.org/Steam
