@@ -10,19 +10,6 @@ Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.
 ####               DayZ_Auto_Mod_Launcher.sh                ####
 ################################################################
 
-This script automatically identifies, downloading and adding the required mods to DayZ.
-
-1: Add 'DayZ_Auto_Mod_Launcher.sh' to your home folder
-
-2: Add 'Start_DayZ_Auto_Mod_Launcher.sh' to your home folder
-
-3: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.
-
-
-################################################################
-####               DayZ_Auto_Mod_Launcher.sh                ####
-################################################################
-
   </td>
   <td>
     <p>1: Add both scripts to your home folder.<br />   
