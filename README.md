@@ -7,7 +7,9 @@
 **Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
-Just follow the instructions in the terminal window. Easy mode..
+Just follow the instructions in the terminal window.
+
+This script can launch modded servers and vanilla servers.
 
   **How To**:
 
