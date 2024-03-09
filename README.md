@@ -1,4 +1,4 @@
-**- Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher**
+- Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
 - Modded by: ice_hotf
 - Tested with Debian 11 and 12.
 - Tested with the official steam package: https://wiki.debian.org/Steam
@@ -6,19 +6,17 @@
 
 **Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
+This script will automatically identify missing mods, download them and launch DayZ with the mods.
+Just follow the instructions in the terminal window. Easy mode..
 
 ################################################################
-####              Mod Launchers for Dayz                ####
+####               How To Use These Scripts                 ####
 ################################################################
 
-Scripts that automatically identifies, downloading and adding the required mods to DayZ.
+- Add both scripts to your 'home' folder.
+- Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
+- Wait for mods to download and click enter.
+- DayZ launches with mods.
 
- </td>
-  <td>
-    <p>1: Add both scripts to your home folder.<br />   
-    2: Run the 'Start_DayZ_etc script' through terminal, alias or application.desktop file.<br /> 
-    3: Follow the instructions in the terminal window.<br /> 
-    4: Use the README.md in the script folder for further instructions.</p>
-  </td>
-</tr>
-
+![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/e46e55c4-20cc-454d-856f-9acf0123f98f)
+![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/a8dfee68-b2a7-4110-a017-41192fe7d5a3)
