@@ -10,7 +10,7 @@ This is a mod launcher for DayZ on Linux.
 This script will identify missing mods and provide a terminal command and a URL.
 
 If you run the command in the terminal it will open the mod workshop page through the Steam application and 
-all you need to do is click 'Subscribe' on the mod.
+all you need to do is click 'Subscribe' on the mod, wait for it to download and run the script again.
 
 The URL will open the mods's workshop page through your browser. 
 
