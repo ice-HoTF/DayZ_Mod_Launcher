@@ -26,7 +26,7 @@ This script automatically identifies, downloading and adding the required mods t
   </td>
   <td>
     <p>1: Add both scripts to your home folder.<br />   
-    2: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.</p>
+    2: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.
     3: Follow the instructions in the terminal window.</p>
   </td>
 </tr>
