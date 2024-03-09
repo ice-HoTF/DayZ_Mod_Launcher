@@ -15,5 +15,4 @@ export ip
 export port
 export nname
 echo ""
-bash ./Auto_Mod_DZ_CLI.sh -d -l -s $ip -p $port -n $nname
-
+bash ./DayZ_Auto_Mod_Launcher.sh -d -l -s $ip -p $port -n $nname
