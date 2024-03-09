@@ -211,7 +211,8 @@ mods_setup() {
 
 setup_mods() {
   echo ""
-  read -p $'\e[33mWait for Steam to download mods and then press the 'Enter' key.\e[0m' foo
+  read -p $'\e[33mWait for Steam to download mods and then press ENTER.' foo
+
   local dir_dayz="${1}"
   local dir_workshop="${2}"
   local missing=0
@@ -306,8 +307,9 @@ echo "Game IP:Port $ip"
 echo "Query Port: $port"
 echo "Mods: $mods"
 echo ""
-read -p $'\e[press the 'Enter' key to launch DayZ with mods.\e[0m' foo
- 
+
+read -p $'\e[33mPress ENTER to launch DayZ with mods.' foo
+#read -p $'\e[33mPress the 'Enter' key to launch DayZ with mods.\e[0m' foo 
 ################################### FIRE ################################################
 steam -applaunch 221100 "-mod=${mods}" -connect=${ip} --port ${port} -name=${nname}
 #########################################################################################
