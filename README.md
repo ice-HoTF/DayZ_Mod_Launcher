@@ -24,6 +24,11 @@ This script will automatically add the mods to the DayZ launch parameters and jo
 
 This script automatically identifies, downloading and adding the required mods to DayZ.
 
-1: Add 'DayZ_Auto_Mod_Launcher.sh' to your home folder
-2: Add 'Start_DayZ_Auto_Mod_Launcher.sh' to your home folder
-3: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.
+ </td>
+  <td>
+    <p>1: Add both scripts to your home folder.<br />   
+    2: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.<br /> 
+    3: Follow the instructions in the terminal window.</p>
+  </td>
+</tr>
+
