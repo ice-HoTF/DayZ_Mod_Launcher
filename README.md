@@ -9,9 +9,9 @@
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
 Just follow the instructions in the terminal window. Easy mode..
 
-#####################
-####    How To    ###  
-#####################
+###############
+####    How To    
+###############
 
 - Add both scripts to your 'home' folder.
 - Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
