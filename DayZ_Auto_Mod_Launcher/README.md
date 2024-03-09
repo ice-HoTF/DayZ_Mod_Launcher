@@ -7,20 +7,13 @@
 **Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
+Just follow the instructions in the terminal window. Easy mode..
 
 ################################################################
 ####               How To Use These Scripts                 ####
 ################################################################
 
-  </td>
-  <td>
-    <p>1: Add both scripts to your home folder.<br />   
-    2: Run 'Start_DayZ_Auto_Mod_Launcher.sh' through terminal, alias or application.desktop file.<br /> 
-    3: Get server IP and port from https://www.battlemetrics.com/servers/dayz/</p>
-  </td>
-</tr>
-
-
+- Add both scripts to your 'home' folder.
 - Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
 - Wait for mods to download and click enter.
 - DayZ launches with mods.
