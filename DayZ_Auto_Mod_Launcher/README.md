@@ -11,11 +11,6 @@ Just follow the instructions in the terminal window. Easy mode..
 
 **How To**:
 
-Add both scripts to your 'home' folder.
-Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username.
-Wait for mods to download and click enter.
-DayZ launches with mods.
-
 - Add both scripts to your 'home' folder.
 - Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
 - Wait for mods to download and click enter.
