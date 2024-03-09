@@ -20,3 +20,8 @@ This script can launch modded servers and vanilla servers.
 
 ![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/e46e55c4-20cc-454d-856f-9acf0123f98f)
 ![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/a8dfee68-b2a7-4110-a017-41192fe7d5a3)
+
+
+Vanilla server:
+
+![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/0db4233c-4915-4a8e-9e5f-8e1558981f04)
