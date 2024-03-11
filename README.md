@@ -4,7 +4,7 @@
 - Tested with the official steam package: https://wiki.debian.org/Steam
 
 
-**Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
+**Modded scripts to based on Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
 Just follow the instructions in the terminal window.
