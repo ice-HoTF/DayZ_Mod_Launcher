@@ -39,6 +39,14 @@ https://www.youtube.com/watch?v=ARHKGg2aMXo
 ![Screenshot from 2024-03-11 01-15-51](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/fe23aaf5-a1b8-4f74-a0f2-3a4ca93bd77a)
 
 
+
+**When joining Vanilla server:**
+
+![Screenshot from 2024-03-11 01-21-14](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/bfe2a703-b0db-4ef7-a7e9-7404f27e5dd8)
+
+
+
+
 The MIT License (MIT)
 
 Copyright (c) 2021-2022 Sebastian Meyer
@@ -59,8 +67,3 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**When joining Vanilla server:**
-
-![Screenshot from 2024-03-11 01-21-14](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/bfe2a703-b0db-4ef7-a7e9-7404f27e5dd8)
-
