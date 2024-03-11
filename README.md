@@ -20,6 +20,8 @@ This script can launch modded servers and vanilla servers.
 
 **Screenshots:**
 
+
+
 **When Mods are Missing:**
 
 ![Screenshot from 2024-03-11 01-13-39](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/63fe82ec-aeb0-4d25-b8a1-8c8f215c3634)
