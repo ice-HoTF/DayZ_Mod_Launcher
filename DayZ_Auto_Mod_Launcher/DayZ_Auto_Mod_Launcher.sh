@@ -42,6 +42,7 @@ PORT="${DEFAULT_QUERYPORT}"
 NAME=""
 INPUT=()
 MODS=()
+MODS2=()
 PARAMS=()
 
 declare -A DEPS=(
@@ -180,73 +181,78 @@ query_server_api() {
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
   jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing mods data from API response"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;33mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[33mPress ENTER to launch Vanilla DayZ.' foo; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname}; exit; }
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;33mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[33mPress ENTER to launch Vanilla DayZ.' foo; echo ""; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 
 }
 
+
 mods_setup() {
-
+  
+  local missing=0
   local dir_dayz="${1}"
   local dir_workshop="${2}"
-  local missing=0
+for modid in "${INPUT[@]}"; do 
+  local modpath="${dir_workshop}/${modid}" 
 
-  for modid in "${INPUT[@]}"; do
+if ! [[ -d "${modpath}" ]]; then
+
+   missing=1
+   echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
+   echo -e "\e[1;33mDOWNLOADING MOD: ${modid}\e[0m"
+   steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
+   sleep 0.5
+   local modpath="${dir_workshop}/${modid}"
+   
+  continue
+fi
+    done
+    
+if [ "$missing" -eq "1" ]; then
+    steam steam://open/library
+    echo ""
+    echo ""
+    read -p $'\e[33mWait for Steam to download mods and then press ENTER.' foo
+fi
+    missing=0   
+for modid in "${INPUT[@]}"; do  
     local modpath="${dir_workshop}/${modid}" 
-
-  if ! [[ -d "${modpath}" ]]; then
-      missing=1
-     echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
-     echo -e "\e[1;33mDOWNLOADING MOD: ${modid}\e[0m"
-     steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
-     steam steam://open/library
-     sleep 0.5
-     local modpath="${dir_workshop}/${modid}"
-     
-      continue 
-    fi
-  done
-}
-
-setup_mods() {
-  echo ""
-  read -p $'\e[33mWait for Steam to download mods and then press ENTER.' foo
-
-  local dir_dayz="${1}"
-  local dir_workshop="${2}"
-  local missing=0
-
-  for modid in "${INPUT[@]}"; do
-
-    local modpath="${dir_workshop}/${modid}" 
-    if ! [[ -d "${modpath}" ]]; then
-      missing=1
-     echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
-     echo -e "\e[1;33mDOWNLOADING MOD: ${modid}\e[0m"
-     local modpath="${dir_workshop}/${modid}"
-      continue 
-    fi
-
     local modmeta="${modpath}/meta.cpp"
-    [[ -f "${modmeta}" ]] || err "Missing mod metadata for: ${modid}"
-
-    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"
-    [[ -n "${modname}" ]] || err "Missing mod name for: ${modid}"
-    [[ -n "${modname}" ]] || err "Missing mod name for: ${WORKSHOP_URL}"
-     
+    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"     
     sleep 0.2
+    echo ""
     echo -e "\e[1;34mMod ${modname} status OK\e[0m"
-    local modlink="@$(dec2base64 "${modid}")"
-      
-    if ! [[ -L "${dir_dayz}/${modlink}" ]]; then
+    local modlink="@$(dec2base64 "${modid}")"     
+if ! [[ -L "${dir_dayz}/${modlink}" ]]; then
       msg "Creating mod symlink for: ${modname} (${modlink})"
       ln -sr "${modpath}" "${dir_dayz}/${modlink}"
-    fi    
- MODS+=("${modlink}")
-#    sleep 0.2
-  done
-
+      continue
+fi    
+    MODS+=("${modlink}")
+    local mods="$(IFS=";"; echo "${MODS[*]}")"
+done
+    sleep 0.5
+    echo ""
+    echo "Name: $nname"
+    echo "Game IP:Port $ip"
+    echo "Query Port: $port"
+    echo "Mods: $mods"
+    echo -e "\e[1;32mLaunch command for this server:\e[0m"
+    echo -e "\e[1;32msteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
+    echo ""
+    echo ""
+#    read -p $'\e[33mPress ENTER to launch DayZ with mods.' foo
+    read -p $'Press ENTER to launch DayZ with mods.' foo
+    echo ""  
+    echo ""  
+    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+    echo ""
+    echo ""
+    echo ""
+    echo "Starting DayZ.. Please Wait.." 
+    echo ""
+exit
 }
 
 run_steam() {
@@ -282,59 +288,10 @@ main() {
   local dir_workshop="${STEAM_ROOT}/workshop/content/${DAYZ_ID}"
   check_dir "${dir_dayz}"
   check_dir "${dir_workshop}"
-
   query_server_api
   mods_setup "${dir_dayz}" "${dir_workshop}" || exit 1
-  setup_mods "${dir_dayz}" "${dir_workshop}" || exit 1
-
   local mods="$(IFS=";"; echo "${MODS[*]}")"
 
-  if [[ "${LAUNCH}" == 1 ]]; then
-    local cmdline=()
-    [[ -n "${mods}" ]] && cmdline+=("-mod=${mods}")
-#    [[ -n "${SERVER}" ]] && cmdline+=("-connect=${SERVER}" -nolauncher -world=empty)
-    [[ -n "${NAME}" ]] && cmdline+=("-name=${NAME}")
-
-
-
-
-##########################################################
-############### THE GOOD STUFF ###########################
-##########################################################
-sleep 0.5
-echo "Name: $nname"
-echo "Game IP:Port $ip"
-echo "Query Port: $port"
-echo "Mods: $mods"
-echo ""
-
-read -p $'\e[33mPress ENTER to launch DayZ with mods.' foo
-#read -p $'\e[33mPress the 'Enter' key to launch DayZ with mods.\e[0m' foo 
-################################### FIRE ################################################
-steam -applaunch 221100 "-mod=${mods}" -connect=${ip} --port ${port} -name=${nname}
-#########################################################################################
-
-  elif [[ -n "${mods}" ]]; then
-
-    echo "Mods: $mods"
-    
-    case $yn in 
-	y ) echo proceeding;;
-	n ) echo exiting...;
-		exit;;
-	* ) echo invalid response;
-		exit 1;;
-esac
-
-################################### FIRE ################################################
-steam -applaunch 221100 "-mod=${mods}" -connect=${ip} --port ${port} -name=${nname} 
-#########################################################################################
-    
-  else
-    msg "Nothing to do..."
-    msg "No mod-ID list, --server address, or --launch parameter set."
-    msg "See --help for all the available options."
-  fi
 }
 
 main
