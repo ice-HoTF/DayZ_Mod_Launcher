@@ -1,4 +1,4 @@
-**DayZ Mod Launcher for Linux**
+**DayZ Auto-Mod Launcher for Linux**
 
 - Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
 - Rewritten and modded by: ice_hotf
