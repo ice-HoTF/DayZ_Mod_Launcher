@@ -21,6 +21,9 @@ This script can launch modded servers and vanilla servers.
 - Wait for mods to download and click enter.
 - DayZ launches with mods.
 
+**Video:**
+https://www.youtube.com/watch?v=ARHKGg2aMXo
+
 **Screenshots:**
 
 
