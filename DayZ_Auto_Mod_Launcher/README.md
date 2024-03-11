@@ -7,14 +7,33 @@
 **Modded scripts to use with Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
-Just follow the instructions in the terminal window. Easy mode..
+Just follow the instructions in the terminal window.
 
-**How To**:
+This script can launch modded servers and vanilla servers.
+
+  **How To**:
 
 - Add both scripts to your 'home' folder.
 - Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
 - Wait for mods to download and click enter.
 - DayZ launches with mods.
 
-![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/e46e55c4-20cc-454d-856f-9acf0123f98f)
-![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/a8dfee68-b2a7-4110-a017-41192fe7d5a3)
+**Screenshots:**
+
+
+
+**When Mods are Missing:**
+
+![Screenshot from 2024-03-11 01-13-39](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/63fe82ec-aeb0-4d25-b8a1-8c8f215c3634)
+![Screenshot from 2024-03-11 01-14-26](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/981d1859-208c-4b1f-a7ab-eaf528ddceec)
+
+
+**When Mods are already installed:**
+
+![Screenshot from 2024-03-11 01-15-51](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/fe23aaf5-a1b8-4f74-a0f2-3a4ca93bd77a)
+
+
+**When joining Vanilla server:**
+
+![Screenshot from 2024-03-11 01-21-14](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/bfe2a703-b0db-4ef7-a7e9-7404f27e5dd8)
+
