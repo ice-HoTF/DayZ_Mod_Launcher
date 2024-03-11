@@ -226,7 +226,7 @@ for modid in "${INPUT[@]}"; do
     echo -e "\e[1;34mMod ${modname} status OK\e[0m"
     local modlink="@$(dec2base64 "${modid}")"     
 if ! [[ -L "${dir_dayz}/${modlink}" ]]; then
-      msg "Creating mod symlink for: ${modname} (${modlink})"
+    # msg "Creating mod symlink for: ${modname} (${modlink})"
       ln -sr "${modpath}" "${dir_dayz}/${modlink}"
       continue
 fi    
