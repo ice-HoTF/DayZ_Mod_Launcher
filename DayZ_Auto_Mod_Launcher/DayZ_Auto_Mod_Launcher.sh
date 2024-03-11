@@ -181,7 +181,7 @@ query_server_api() {
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
   jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing mods data from API response"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;33mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[33mPress ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36mPress ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; run_steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 
@@ -213,7 +213,8 @@ if [ "$missing" -eq "1" ]; then
     steam steam://open/library
     echo ""
     echo ""
-    read -p $'\e[33mWait for Steam to download mods and then press ENTER.' foo
+    read -p $'\e[36mWait for Steam to download mods and then press ENTER.' foo
+    echo ""
 fi
     missing=0   
 for modid in "${INPUT[@]}"; do  
@@ -234,23 +235,27 @@ fi
 done
     sleep 0.5
     echo ""
-    echo "Name: $nname"
-    echo "Game IP:Port $ip"
-    echo "Query Port: $port"
-    echo "Mods: $mods"
-    echo -e "\e[1;32mLaunch command for this server:\e[0m"
-    echo -e "\e[1;32msteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
+    echo -e "\e[1;34mName: $nname"
+    echo -e "\e[1;34mGame IP:Port $ip"
+    echo -e "\e[1;34mQuery Port: $port"
+    echo -e "\e[1;34mMods: $mods"
+    echo ""
+    echo -e "\e[1;36mLaunch command for this server:\e[0m"
+    echo ""
+    echo -e "\e[1;40msteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
     echo ""
     echo ""
-#    read -p $'\e[33mPress ENTER to launch DayZ with mods.' foo
-    read -p $'Press ENTER to launch DayZ with mods.' foo
+    read -p $'\e[36mPress ENTER to launch DayZ with mods.' foo
+#    read -p $'Press ENTER to launch DayZ with mods.' foo
     echo ""  
     echo ""  
-    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+    run_steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+#    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
     echo ""
-    echo "Starting DayZ.. Please Wait.." 
+    echo -e "\e[1;36mStarting DayZ.. Please Wait..\e[0m"
+
     echo ""
 exit
 }
