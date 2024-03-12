@@ -181,19 +181,31 @@ query_server_api() {
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
   jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing mods data from API response"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36mPress ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; run_steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36mPress ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
+  sleep 0.5
 
-}
+if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf; then
+  echo "File exists."
+rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf
+
+fi
+if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf; then
+  echo "File exists."
+rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf  
+fi
+
+} 
 
 
 mods_setup() {
-  
-  local missing=0
+
   local dir_dayz="${1}"
   local dir_workshop="${2}"
+  
 for modid in "${INPUT[@]}"; do 
+
   local modpath="${dir_workshop}/${modid}" 
 
 if ! [[ -d "${modpath}" ]]; then
@@ -201,62 +213,58 @@ if ! [[ -d "${modpath}" ]]; then
    missing=1
    echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
    echo -e "\e[1;33mDOWNLOADING MOD: ${modid}\e[0m"
-   steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
+   run_steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
+   steam steam://open/library
+   local modlink="@$(dec2base64 "${modid}")" 
    sleep 0.5
-   local modpath="${dir_workshop}/${modid}"
-   
+
   continue
 fi
     done
-    
-if [ "$missing" -eq "1" ]; then
-    steam steam://open/library
+if (( missing == 1 )); then    
+
     echo ""
+    read -p $'\e[36mWait for Steam to download the mods and then press ENTER.' foo
     echo ""
-    read -p $'\e[36mWait for Steam to download mods and then press ENTER.' foo
-    echo ""
+sleep 0.5
 fi
+
     missing=0   
+
 for modid in "${INPUT[@]}"; do  
+
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"
     local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"     
     sleep 0.2
     echo ""
-    echo -e "\e[1;34mMod ${modname} status OK\e[0m"
+    echo -e "\e[1;32mMod ${modname} status OK\e[0m"
     local modlink="@$(dec2base64 "${modid}")"     
-if ! [[ -L "${dir_dayz}/${modlink}" ]]; then
-    # msg "Creating mod symlink for: ${modname} (${modlink})"
-      ln -sr "${modpath}" "${dir_dayz}/${modlink}"
-      continue
-fi    
+    ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
-    local mods="$(IFS=";"; echo "${MODS[*]}")"
+    local mods="$(IFS=";"; echo "${MODS[*]}")"   
+      continue      
 done
-    sleep 0.5
+
     echo ""
     echo -e "\e[1;34mName: $nname"
     echo -e "\e[1;34mGame IP:Port $ip"
     echo -e "\e[1;34mQuery Port: $port"
     echo -e "\e[1;34mMods: $mods"
     echo ""
-    echo -e "\e[1;36mLaunch command for this server:\e[0m"
     echo ""
-    echo -e "\e[1;40msteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
+    read -p $'\e[36mPress ENTER to launch DayZ with mods.' #foo
+    echo ""
+    echo -e "\e[1;32m""\e[0m"
+    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
-    read -p $'\e[36mPress ENTER to launch DayZ with mods.' foo
-#    read -p $'Press ENTER to launch DayZ with mods.' foo
+    echo -e "\e[1;40mLaunch command for this server:\n\nsteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
+    echo ""
+    echo ""
+    echo -e "\e[1;33mStarting DayZ.. Please Wait..\e[0m"
     echo ""  
-    echo ""  
-    run_steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
-#    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
-    echo ""
-    echo ""
-    echo ""
-    echo -e "\e[1;36mStarting DayZ.. Please Wait..\e[0m"
 
-    echo ""
 exit
 }
 
@@ -273,12 +281,6 @@ wait
 main() {
   check_deps
   resolve_steam
-
-  if [[ "${STEAM}" == flatpak ]]; then
-    msg "Using flatpak mode"
-  else
-    msg "Using non-flatpak mode: ${STEAM}"
-  fi
 
   if [[ -z "${STEAM_ROOT}" ]]; then
     if [[ "${STEAM}" == flatpak ]]; then
