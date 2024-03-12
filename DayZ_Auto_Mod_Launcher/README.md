@@ -43,3 +43,13 @@ https://www.youtube.com/watch?v=ARHKGg2aMXo
 
 ![Screenshot from 2024-03-11 01-21-14](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/bfe2a703-b0db-4ef7-a7e9-7404f27e5dd8)
 
+
+
+**FAQ:**
+
+If anything fails you should be able to solve it by one of these actions: 
+
+- Usubscribe from the mods from steam workshop and run the script againg. 
+- Delete the mods from /home/$USER/.steam/debian-installation/steamapps/common/DayZ. The mods looks like this example: A text file called "1828439124".
+- Delete the mods from /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100. The mods looks like this example: A folder called "1828439124".
+- Run the script again after completing step 1, 2 and 3.
