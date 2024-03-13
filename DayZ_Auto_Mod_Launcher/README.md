@@ -1,15 +1,19 @@
 **DayZ Auto-Mod Launcher for Linux**
 ##
 ##
-- Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
-- Rewritten and modded by: ice_hotf
-- Tested with Debian 11 and 12.
-- Tested with the official steam package: https://wiki.debian.org/Steam
+Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
+##
+Rewritten and modded by: ice_hotf
+##
+Tested with Debian 11 and 12.
+##
+Tested with the official steam package: https://wiki.debian.org/Steam
 ##
 ##
 **Modded scripts to based on Bastimeyer's DAYZ Linux CLI LAUNCHER.**
 ##
 This script will automatically identify missing mods, download them and launch DayZ with the mods.
+##
 Just follow the instructions in the terminal window.
 ##
 This script can launch modded servers and vanilla servers.
