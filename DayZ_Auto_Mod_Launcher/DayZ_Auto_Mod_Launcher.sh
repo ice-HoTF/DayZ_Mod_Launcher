@@ -189,15 +189,23 @@ query_server_api() {
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
   sleep 0.5
 
-if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf; then
-  echo "File exists."
-rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf
-
+if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
+rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf  
 fi
-if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf; then
-  echo "File exists."
+
+if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf" ] ; then
 rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf  
 fi
+
+#if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf; then
+#  echo "File exists."
+#rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf
+
+#fi
+#if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf; then
+#  echo "File exists."
+#rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf  
+#fi
 
 } 
 
