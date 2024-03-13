@@ -57,7 +57,7 @@ https://www.youtube.com/watch?v=ARHKGg2aMXo
 **FAQ:**
 \
 If anything fails you should be able to solve it by one of these actions: 
-\
+
 - Usubscribe from the mods from steam workshop and run the script againg. 
 - Delete the mods from /home/$USER/.steam/debian-installation/steamapps/common/DayZ. The mods looks like this example: A text file called "1828439124".
 - Delete the mods from /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100. The mods looks like this example: A folder called "1828439124".
