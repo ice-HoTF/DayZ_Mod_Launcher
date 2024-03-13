@@ -19,9 +19,9 @@ This script can launch modded servers and vanilla servers.
 - Run 'sh Start_DayZ_Auto_Mod.sh' in the terminal, type in IP:Port & Query Port and username. 
 - Wait for mods to download and click enter.
 - DayZ launches with mods.
-- The script will provide a direct link to the server after you connect to the server. \n
-  Example:\n 
-  steam -applaunch 221100 "-mod=@BLDvXA;@VMT7bA" -connect=71.27.252.186:2322 --port 2323 -name=ice -nolauncher -world=empty
+- The script will provide a direct link to the server after you connect to the server.
+- Example:
+- steam -applaunch 221100 "-mod=@BLDvXA;@VMT7bA" -connect=71.27.252.186:2322 --port 2323 -name=ice -nolauncher -world=empty
 
 
 
