@@ -115,8 +115,13 @@ debug() {
 }
 
 check_dir() {
-  debug "Checking directory: ${1}"
-  [[ -d "${1}" ]] || err "Invalid/missing directory: ${1}"
+#  debug "Checking directory: ${1}"
+ # [[ -d "${1}" ]] || err "Invalid/missing directory: ${1}"
+
+if [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/content/221100" ] ; then
+mkdir "/home/$USER/.steam/debian-installation/steamapps/workshop/content/221100"
+fi
+
 }
 
 check_dep() {
