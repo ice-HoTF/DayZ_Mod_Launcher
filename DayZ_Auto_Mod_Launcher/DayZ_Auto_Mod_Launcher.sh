@@ -46,9 +46,9 @@ MODS2=()
 PARAMS=()
 
 declare -A DEPS=(
-  [gawk]="required for parsing the mod metadata"
-  [curl]="required for querying the server API"
-  [jq]="required for parsing the server API's JSON response"
+  [gawk]="required for parsing the mod metadata. Try: Sudo apt install gawk"
+  [curl]="required for querying the server API. Try: Sudo apt install curl"
+  [jq]="required for parsing the server API's JSON response. Try: Sudo apt install jq"
 )
 
 
