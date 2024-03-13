@@ -22,6 +22,7 @@ This script can launch modded servers and vanilla servers.
 - The script will provide a direct link to the server after you connect to the server.
 - Example:
 - steam -applaunch 221100 "-mod=@BLDvXA;@VMT7bA" -connect=71.27.252.186:2322 --port 2323 -name=ice -nolauncher -world=empty
+- Use this command for direct connect to server by saving it to aliases, script, .desktop-file or by running it in the terminal.
 
 
 
