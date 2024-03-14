@@ -42,13 +42,13 @@ PORT="${DEFAULT_QUERYPORT}"
 NAME=""
 INPUT=()
 MODS=()
-MODS2=()
 PARAMS=()
 
 declare -A DEPS=(
-  [gawk]="required for parsing the mod metadata. Try: Sudo apt install gawk"
-  [curl]="required for querying the server API. Try: Sudo apt install curl"
-  [jq]="required for parsing the server API's JSON response. Try: Sudo apt install jq"
+
+  [gawk]="required for mod metadata. Try: sudo apt install gawk"
+  [curl]="required for the server API. Try: sudo apt install curl"
+  [jq]="required for the server API's JSON response. Try: sudo apt install jq"
 )
 
 
@@ -97,8 +97,8 @@ done
 
 
 err() {
-  echo >&2 "[${SELF}][error] ${@}"
-#   echo ""
+  echo -e >&2 "[\e[1;31m${SELF}][error] ${@}"
+#  echo >&2 "[${SELF}][error] ${@}"
   exit 1
 }
 
@@ -115,11 +115,11 @@ debug() {
 }
 
 check_dir() {
-#  debug "Checking directory: ${1}"
+
+debug "Checking directory: ${1}"
 if [ ! -d "${1}" ] ; then
 mkdir "/home/$USER/.steam/debian-installation/steamapps/workshop/content/221100"
 fi
-
 }
 
 check_dep() {
@@ -128,8 +128,8 @@ check_dep() {
 
 check_deps() {
   for dep in "${!DEPS[@]}"; do
-    check_dep "${dep}" || err "'${dep}' is missing (${DEPS["${dep}"]}). Aborting."
-  done
+    check_dep "${dep}" || err "'${dep}' not installed (${DEPS["${dep}"]})"
+done
 }
 
 check_flatpak() {
@@ -187,28 +187,40 @@ query_server_api() {
   jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36mThis is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36mPress ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
-  sleep 0.5
 
+  
+sleep 0.25
 if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
 rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf  
 fi
-
+sleep 0.25
 if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf" ] ; then
 rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf  
 fi
+sleep 0.25
+echo ""
 
-#if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf; then
-#  echo "File exists."
-#rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf
+echo ""
+echo -e "\e[1;40mTo upgrade your mods you need to re-download them.\e[0m"
+echo -e "\e[1;40mThis is recommended if you have problems with joining servers.\e[0m"
+echo ""
+  
+read -p $'\e[32mPress p and enter to play DayZ.\nPress m and enter to re-download (all) mods.\n'  pm
+case ${pm} in 
 
-#fi
-#if test -f /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf; then
-#  echo "File exists."
-#rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_241100.acf  
-#fi
+	p ) echo exiting...;
+		sleep 0.2;;
+	m ) rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/*
+            sleep 0.25
+            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
+            sleep 0.25
+            find /home/$USER/.steam/debian-installation/steamapps/common/DayZ/ . -name '@*' -exec rm {} \;;;
+	* ) echo invalid response;
 
-} 
+esac
+echo ""
 
+}
 
 mods_setup() {
 
@@ -224,7 +236,9 @@ if ! [[ -d "${modpath}" ]]; then
    missing=1
    echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
    echo -e "\e[1;33mDOWNLOADING MOD: ${modid}\e[0m"
-   run_steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
+   run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
+#   steam steam://url/CommunityFilePage/${modid}
+#    read -p $'\e[36mPress 'Subscribe' on the workshop Mod and Press ENTER.' foo
    steam steam://open/library
    local modlink="@$(dec2base64 "${modid}")" 
    sleep 0.5
@@ -232,14 +246,13 @@ if ! [[ -d "${modpath}" ]]; then
   continue
 fi
     done
-if (( missing == 1 )); then    
-
+if (( missing == 1 )); then
     echo ""
     read -p $'\e[36mWait for Steam to download the mods and then press ENTER.' foo
     echo ""
+    echo ""
 sleep 0.5
 fi
-
     missing=0   
 
 for modid in "${INPUT[@]}"; do  
@@ -248,13 +261,15 @@ for modid in "${INPUT[@]}"; do
     local modmeta="${modpath}/meta.cpp"
     local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"     
     sleep 0.2
+#   run_steam steam://url/CommunityFilePage/${modname}+workshop_download_item 221100 ${modid} && wait
+    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
     echo ""
-    echo -e "\e[1;32mMod ${modname} status OK\e[0m"
     local modlink="@$(dec2base64 "${modid}")"     
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
     local mods="$(IFS=";"; echo "${MODS[*]}")"   
-      continue      
+      continue     
+      sleep 0.5 
 done
 
     echo ""
