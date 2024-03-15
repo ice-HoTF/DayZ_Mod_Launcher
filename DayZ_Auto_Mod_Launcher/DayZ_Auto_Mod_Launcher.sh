@@ -203,7 +203,7 @@ sleep 0.25
 echo ""
 
 echo ""
-echo -e "\e[1;40mTo update your mods you need to re-download them.\nThis is recommended if you can't join the server.\e[0m"
+echo -e "\e[1;40mTo update your mods you need to re-download them.\e[0m\n\e[1;40mThis is recommended if you can't join the server.\e[0m"
 echo ""
 missing=0   
    for modid in "${INPUT[@]}"; do  
@@ -214,9 +214,14 @@ missing=0
     MODS2+=("${namelink}")
     local mods2="$(IFS=";" echo "${MODS2[*]}")"
 done
-echo -e "\e[1;40m"
 echo ""
-read -s -n1 -p $'\e[48mPress P to Play DayZ.\n\n\e[36mPress M to Verify/Re-Download Mods for this Server.\n\n\e[33mPress R to Remove Mods for this Server.\n\n\e[31mPress W to Remove All Mods\n\n\e[0m' pmrw
+echo ""
+read -s -n1 -p $'
+\e[1;40m\e[48mPress P to Play DayZ\e[0m
+\e[1;40m\e[36mPress M to Re-Download Mods for this Server\e[0m
+\e[1;40m\e[33mPress R to Remove Mods for this Server\e[0m
+\e[1;40m\e[31mPress W to Remove All Mods\e[0m\n\n\e[0m
+' pmrw
 echo ""
 case ${pmrw} in 
 
@@ -334,11 +339,11 @@ for modid in "${INPUT[@]}"; do
       continue     
 done
     echo ""
-    echo -e "\e[1;40m"
-    echo -e "\e[1;20mName: $nname"
-    echo -e "\e[1;20mGame IP:Port $ip"
-    echo -e "\e[1;20mQuery Port: $port" 
-    echo -e "\e[1;20mMods: $mods \e[0m"
+    echo ""
+    echo -e "\e[1;40m\e[1;20mName: $nname\e[0m"
+    echo -e "\e[1;40m\e[1;20mGame IP:Port $ip\e[0m"
+    echo -e "\e[1;40m\e[1;20mQuery Port: $port\e[0m" 
+    echo -e "\e[1;40m\e[1;20mMods: $mods \e[0m"
     echo ""
     echo ""
     read -p $'\e[1;40m\e[36mPress ENTER to launch DayZ with mods.\e[0m'
