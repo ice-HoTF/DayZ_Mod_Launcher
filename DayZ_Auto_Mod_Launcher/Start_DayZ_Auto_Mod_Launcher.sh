@@ -39,19 +39,18 @@ bash ./DayZ_Auto_Mod_Launcher.sh -d -l -s $ip -p $port -n $nname
 sleep
 
 
-####### LAUNCH OPTION 1 #######
+####### LAUNCH OPTION 2 #######
 
 ####### EXAMPLE: #######
-:'
-ip=164.567.203.230:2502
-export ip
+#
+#ip=164.567.203.230:2502
+#export ip
 
-port=27018
-export port
+#port=27018
+#export port
 
-nname=survivor
-export nname
+#nname=survivor
+#export nname
 
-echo ""
-bash ./DayZ_Auto_Mod_Launcher.sh -d -l -s $ip -p $port -n $nname 
-'
+#echo ""
+#bash /home/$USER/Documents/Scripts/Dayz/DAML.sh -d -l -s $ip -p $port -n $nname 
