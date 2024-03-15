@@ -224,8 +224,6 @@ case ${pmr} in
 	    echo -e "\e[1;33mMods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
-#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;;;
-#            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
             sleep 0.25;;
 
 	m ) echo ""
@@ -239,7 +237,6 @@ case ${pmr} in
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             sleep 0.25
-#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;;;
             rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
             sleep 0.25;;
 
@@ -253,8 +250,6 @@ case ${pmr} in
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             sleep 0.25
-#            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/${modlink};
-#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;
 	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
             exit;;
 
@@ -270,8 +265,6 @@ echo ""
 
 mods_setup() {
 
-#  read -p $'\e[33mMods Setup!' foo
-  echo ""
   echo ""
   local dir_dayz="${1}"
   local dir_workshop="${2}"
@@ -280,18 +273,9 @@ for modid in "${INPUT[@]}"; do
     local modlink="@$(dec2base64 "${modid}")" 
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"
-#    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"#####################################################
-    sleep 0.5
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
-#    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
-    echo ""
- #   ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"######################################################################
     MODS+=("${modlink}")
     local mods="$(IFS=";"; echo "${MODS[*]}")"
-#    echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
-#    echo -e "\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"   
-#    run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
-#    steam steam://open/library
     local modlink="@$(dec2base64 "${modid}")" 
     sleep 0.2
    
@@ -302,10 +286,10 @@ if ! [[ -d "${modpath}" ]]; then
      
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"
-#    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"   ###############################
+    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"   ###############################
     local modlink="@$(dec2base64 "${modid}")"  
 #    sleep 0.2
-    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
+    echo -e "\e[1;32mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
 #    echo ""
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
@@ -326,7 +310,6 @@ if (( missing == 1 )); then
     read -p $'\e[36mWait for Steam to download the mods and then press ENTER.' foo
     echo ""
     echo ""
-sleep 0.5
 fi
     missing=0   
 
@@ -334,18 +317,15 @@ for modid in "${INPUT[@]}"; do
     local modlink="@$(dec2base64 "${modid}")" 
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"  
-    sleep 0.2
-#    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
-    echo ""
     local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"
+    echo -e "\e[1;32mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
+    echo ""
+    
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
- #   local mods="$(IFS=";"; echo "${MODS[*]}")"
-
       continue     
-      sleep 1
 done
-#    echo ""
+    echo ""
     echo -e "\e[1;34mName: $nname"
     echo -e "\e[1;34mGame IP:Port $ip"
     echo -e "\e[1;34mQuery Port: $port"
