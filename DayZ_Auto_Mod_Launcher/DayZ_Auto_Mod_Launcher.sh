@@ -216,7 +216,7 @@ missing=0
 done
 echo -e "\e[1;40m"
 echo ""
-read -n1 -p $'\e[48mPress P to Play DayZ.\n\n\e[36mPress M to Verify/Re-Download Mods for this Server.\n\n\e[33mPress R to Remove Mods for this Server.\n\n\e[31mPress W to Remove All Mods\n\n\e[0m' pmrw
+read -s -n1 -p $'\e[48mPress P to Play DayZ.\n\n\e[36mPress M to Verify/Re-Download Mods for this Server.\n\n\e[33mPress R to Remove Mods for this Server.\n\n\e[31mPress W to Remove All Mods\n\n\e[0m' pmrw
 echo ""
 case ${pmrw} in 
 
