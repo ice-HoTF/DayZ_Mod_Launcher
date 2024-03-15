@@ -98,20 +98,20 @@ done
 
 
 err() {
-  echo -e >&2 "[\e[1;31m${SELF}][error] ${@}"
-#  echo >&2 "[${SELF}][error] ${@}"
-  exit 1
+echo -e >&2 "[\e[1;31m${SELF}][error] ${@}"
+sleep 0.1
+exit 1
 }
 
 msg() {
-  echo "[${SELF}][info] ${@}"
-#   echo ""
+sleep 0.1
+echo "[${SELF}][info] ${@}"
 }
 
 debug() {
-  if [[ ${DEBUG} == 1 ]]; then
-    echo "[${SELF}][debug] ${@}"
-#   echo ""
+if [[ ${DEBUG} == 1 ]]; then
+echo "[${SELF}][debug] ${@}"
+sleep 0.1
   fi
 }
 
@@ -214,48 +214,58 @@ missing=0
     MODS2+=("${namelink}")
     local mods2="$(IFS=";" echo "${MODS2[*]}")"
 done
+echo -e "\e[1;40m"
+echo ""
+read -n1 -p $'\e[48mPress P to Play DayZ.\n\n\e[36mPress M to Verify/Re-Download Mods for this Server.\n\n\e[33mPress R to Remove Mods for this Server.\n\n\e[31mPress W to Remove All Mods\n\n\e[0m' pmrw
+echo ""
+case ${pmrw} in 
 
-read -n1 -p $'\e[33mPress P to Play DayZ.\n\nPress M to Verify/Re-Download Mods for this Server.\n\nPress R to Remove Mods for this Server.\n\n\e[0m' pmr
-
-case ${pmr} in 
-
-	p )             
-	
-	    echo -e "\e[1;33mMods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
+	p ) #echo -e "\e[1;33mMods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
-            sleep 0.25;;
+            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            sleep 0.1;;
 
 	m ) echo ""
-            echo -e "\e[1;31mDeleting mods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
-            sleep 0.5
+            sleep 0.25
             for modid in "${INPUT[@]}"; do  
 	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
 	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
 	    continue
 	   done
-            sleep 0.25
+            sleep 0.1
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
-            sleep 0.25
+            sleep 0.1
             rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
-            sleep 0.25;;
+            sleep 0.1;;
 
 	r ) echo ""
-            echo -e "\e[1;31mDeleting mods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
-            sleep 0.5
+            echo -e "\e[1;31mDeleting Mods:\n\e[1;33m${mods2}\n\e[1;31mFrom Workshop Directory: ${dir_workshop}"
+            echo "" 
+            sleep 0.1
 	    for modid in "${INPUT[@]}"; do  
 	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
 	    continue
 	    done
-            sleep 0.25
-            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
-            sleep 0.25
+            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/downloads/*
+            sleep 0.1
+	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            exit;;
+            
+	w ) echo ""
+            echo -e "\e[1;31mDeleting All Mods From Steam Workshop Directory:\n \e[1;33m${dir_workshop}"
+            echo "" 
+            sleep 0.1
+	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/*
+	    sleep 0.1
+            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/downloads/*
+            sleep 0.1
 	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
             exit;;
 
 	* ) echo "" 
-	    echo -e " |\e[1;33m\n Invalid response. Reply 'P' or 'M' with small characters.";
-            sleep 0.25
+	    echo -e "|\e[1;33m\n Invalid response. Reply 'P' or 'M' with small characters.\e[0m";
+            sleep 0.1
             exit;;
 esac
 echo ""
@@ -286,20 +296,18 @@ if ! [[ -d "${modpath}" ]]; then
      
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"
-    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"   ###############################
     local modlink="@$(dec2base64 "${modid}")"  
-#    sleep 0.2
-    echo -e "\e[1;32mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
 #    echo ""
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
-    local mods="$(IFS=";"; echo "${MODS[*]}")"
-   echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
-   echo -e "\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"   
+    local mods="$(IFS=";"; echo "${MODS[*]}")" 
+   echo -e "\e[1;40m\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}")\e[0m"
+   echo -e "\e[1;40m\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"
+   echo -e "\e[1;40m| Mod Id: ${modid} | \e[1;40mMod Link: ${modlink} |\e[0m"
+   echo ""   
    run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
    steam steam://open/library
-   local modlink="@$(dec2base64 "${modid}")" 
-   sleep 1
+   sleep 0.5
 
   continue
 fi  
@@ -307,7 +315,7 @@ fi
  
 if (( missing == 1 )); then
     echo ""
-    read -p $'\e[36mWait for Steam to download the mods and then press ENTER.' foo
+read -p $'\e[1;40m\e[36mWait for Steam to download the mods and then press ENTER.\e[0m' foo
     echo ""
     echo ""
 fi
@@ -318,30 +326,32 @@ for modid in "${INPUT[@]}"; do
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"  
     local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"
-    echo -e "\e[1;32mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
-    echo ""
-    
+    echo -e "\e[1;40m\e[1;32m| Mod Name: ${modname} | Mod Id: ${modid} | Mod Link: ${modlink} | \e[0m"
+
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
+    sleep 0.25
       continue     
 done
     echo ""
-    echo -e "\e[1;34mName: $nname"
-    echo -e "\e[1;34mGame IP:Port $ip"
-    echo -e "\e[1;34mQuery Port: $port"
-    echo -e "\e[1;34mMods: $mods"
+    echo -e "\e[1;40m"
+    echo -e "\e[1;20mName: $nname"
+    echo -e "\e[1;20mGame IP:Port $ip"
+    echo -e "\e[1;20mQuery Port: $port" 
+    echo -e "\e[1;20mMods: $mods \e[0m"
     echo ""
     echo ""
-    read -p $'\e[36mPress ENTER to launch DayZ with mods.' #foo
+    read -p $'\e[1;40m\e[36mPress ENTER to launch DayZ with mods.\e[0m'
+#    read -p 'Press ENTER to launch DayZ with mods.'
     echo ""
-    echo -e "\e[1;32m""\e[0m"
-    run_steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+#    echo -e "\e[1;40m""\e[0m"
+    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
     echo -e "\e[1;40mLaunch command for this server:\n\nsteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
     echo ""
     echo ""
-    echo -e "\e[1;33mStarting DayZ.. Please Wait..\e[0m"
+    echo -e "\e[1;40m\e[1;36mStarting DayZ.. Please Wait..\e[0m"
     echo ""  
 exit
 }
