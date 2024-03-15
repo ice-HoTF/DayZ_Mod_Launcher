@@ -189,6 +189,7 @@ query_server_api() {
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 
+
   
 sleep 0.25
 if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
@@ -204,63 +205,122 @@ echo ""
 echo ""
 echo -e "\e[1;40mTo update your mods you need to re-download them.\nThis is recommended if you can't join the server.\e[0m"
 echo ""
-
+missing=0   
    for modid in "${INPUT[@]}"; do  
     
     local modpath2="${dir_workshop}/${modid}" 
     local namelink="${modid}"
-    ln -sr -f "${modpath2}" "${dir_workshop}/${namelink}"
+#    ln -sr -f "${modpath2}" "${dir_workshop}/${namelink}"
     MODS2+=("${namelink}")
     local mods2="$(IFS=";" echo "${MODS2[*]}")"
 done
 
-read -n1 -p $'\e[32mPress P to play DayZ.\nPress M to verify/re-download mods for this server.\e[0m\n' pm 
-case ${pm} in 
+read -n1 -p $'\e[33mPress P to Play DayZ.\n\nPress M to Verify/Re-Download Mods for this Server.\n\nPress R to Remove Mods for this Server.\n\n\e[0m' pmr
 
-	p ) 
-            sleep 0.2;;
-            
+case ${pmr} in 
+
+	p )             
+	
+	    echo -e "\e[1;33mMods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
+            sleep 0.25
+            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
+#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;;;
+#            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            sleep 0.25;;
+
 	m ) echo ""
             echo -e "\e[1;31mDeleting mods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
             sleep 0.5
+            for modid in "${INPUT[@]}"; do  
+	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
+	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+	    continue
+	   done
+            sleep 0.25
+            rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
+            sleep 0.25
+#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;;;
+            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            sleep 0.25;;
+
+	r ) echo ""
+            echo -e "\e[1;31mDeleting mods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
+            sleep 0.5
 	    for modid in "${INPUT[@]}"; do  
-	    rm rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
+	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
 	    continue
 	    done
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             sleep 0.25
-            find /home/$USER/.steam/debian-installation/steamapps/common/DayZ/ . -name '@*' -exec rm {} \;;;
-	* ) echo -e " |\e[1;31m\n Invalid response. Reply 'P' or 'M' with small characters.";
+#            rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/${modlink};
+#            find . -maxdepth 1 -type f -name '@*' -exec rm -rf {} \;
+	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            exit;;
+
+	* ) echo "" 
+	    echo -e " |\e[1;33m\n Invalid response. Reply 'P' or 'M' with small characters.";
             sleep 0.25
             exit;;
 esac
+echo ""
 echo ""
 
 }
 
 mods_setup() {
 
+#  read -p $'\e[33mMods Setup!' foo
+  echo ""
+  echo ""
   local dir_dayz="${1}"
   local dir_workshop="${2}"
   
 for modid in "${INPUT[@]}"; do 
-
-  local modpath="${dir_workshop}/${modid}" 
-
+    local modlink="@$(dec2base64 "${modid}")" 
+    local modpath="${dir_workshop}/${modid}" 
+    local modmeta="${modpath}/meta.cpp"
+#    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"#####################################################
+    sleep 0.5
+    ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
+#    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
+    echo ""
+ #   ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"######################################################################
+    MODS+=("${modlink}")
+    local mods="$(IFS=";"; echo "${MODS[*]}")"
+#    echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
+#    echo -e "\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"   
+#    run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
+#    steam steam://open/library
+    local modlink="@$(dec2base64 "${modid}")" 
+    sleep 0.2
+   
+         
 if ! [[ -d "${modpath}" ]]; then
 
    missing=1
+     
+    local modpath="${dir_workshop}/${modid}" 
+    local modmeta="${modpath}/meta.cpp"
+#    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"   ###############################
+    local modlink="@$(dec2base64 "${modid}")"  
+#    sleep 0.2
+    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
+#    echo ""
+    ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
+    MODS+=("${modlink}")
+    local mods="$(IFS=";"; echo "${MODS[*]}")"
    echo -e "\e[1;31mMOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}") \e[0m"
-   echo -e "\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"
+   echo -e "\e[1;33mDOWNLOADING MOD: ${modid}...\e[0m"   
    run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
    steam steam://open/library
    local modlink="@$(dec2base64 "${modid}")" 
-   sleep 0.5
+   sleep 1
 
   continue
-fi
-    done
+fi  
+     done
+ 
 if (( missing == 1 )); then
     echo ""
     read -p $'\e[36mWait for Steam to download the mods and then press ENTER.' foo
@@ -271,21 +331,21 @@ fi
     missing=0   
 
 for modid in "${INPUT[@]}"; do  
-   local modlink="@$(dec2base64 "${modid}")" 
+    local modlink="@$(dec2base64 "${modid}")" 
     local modpath="${dir_workshop}/${modid}" 
-    local modmeta="${modpath}/meta.cpp"
-    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"     
+    local modmeta="${modpath}/meta.cpp"  
     sleep 0.2
-    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
+#    echo -e "\e[1;33mMod: ${modname} | ModId: ${modid} | ModLink: ${modlink} | \e[0m"
     echo ""
+    local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
-    local mods="$(IFS=";"; echo "${MODS[*]}")"
+ #   local mods="$(IFS=";"; echo "${MODS[*]}")"
 
       continue     
       sleep 1
 done
-    echo ""
+#    echo ""
     echo -e "\e[1;34mName: $nname"
     echo -e "\e[1;34mGame IP:Port $ip"
     echo -e "\e[1;34mQuery Port: $port"
