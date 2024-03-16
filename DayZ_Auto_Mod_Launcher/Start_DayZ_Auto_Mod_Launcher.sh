@@ -36,7 +36,7 @@ export port
 export nname
 echo ""
 bash ./DayZ_Auto_Mod_Launcher.sh -d -l -s $ip -p $port -n $nname
-sleep
+sleep 0.2
 
 
 ####### LAUNCH OPTION 2 #######
