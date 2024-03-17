@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #####################################################################################################################################
-### Tested with Debian 11 and 12. ###################################################################################################
+### Tested with Debian 11 and 12 ####################################################################################################
 #####################################################################################################################################
 ### Tested with the official steam package: https://wiki.debian.org/Steam ###########################################################
 #####################################################################################################################################
@@ -99,19 +99,18 @@ done
 
 err() {
 echo -e >&2 "[\e[1;31m${SELF}][error] ${@}"
-sleep 0.1
+
 exit 1
 }
 
 msg() {
-sleep 0.1
+
 echo "[${SELF}][info] ${@}"
 }
 
 debug() {
 if [[ ${DEBUG} == 1 ]]; then
 echo "[${SELF}][debug] ${@}"
-sleep 0.1
   fi
 }
 
@@ -215,17 +214,17 @@ missing=0
     local mods2="$(IFS=";" echo "${MODS2[*]}")"
 done
 echo ""
-echo ""
-read -s -n1 -p $'
-\e[1;40m\e[48mPress P to Play DayZ\e[0m
-\e[1;40m\e[36mPress M to Re-Download Mods for this Server\e[0m
-\e[1;40m\e[33mPress R to Remove Mods for this Server\e[0m
-\e[1;40m\e[31mPress W to Remove All Mods\e[0m\n\n\e[0m
-' pmrw
-echo ""
+read -s -n1 -p $'\e[1;40m\e[20mMenu:\n
+\e[1;40mPress " P " to Play DayZ\n
+\e[36mPress " M " to Re-Download Mods for this Server\n
+\e[33mPress " R " to Remove Mods for this Server\n
+\e[31mPress " W " to Remove All Mods
+\e[0m' pmrw
 case ${pmrw} in 
-
-	p ) #echo -e "\e[1;33mMods: ${mods2}\nFrom Workshop Directory: ${dir_workshop}/" 
+	p ) echo ""
+	    echo ""
+	    echo ""
+	    echo -e "\e[1;40m\e[1;48mChecking Server Mods ..\e[0m" 
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
@@ -273,8 +272,8 @@ case ${pmrw} in
             sleep 0.1
             exit;;
 esac
-echo ""
-echo ""
+
+#echo ""
 
 }
 
@@ -340,11 +339,10 @@ for modid in "${INPUT[@]}"; do
 done
     echo ""
     echo ""
-    echo -e "\e[1;40m\e[1;20mName: $nname\e[0m"
-    echo -e "\e[1;40m\e[1;20mGame IP:Port $ip\e[0m"
-    echo -e "\e[1;40m\e[1;20mQuery Port: $port\e[0m" 
-    echo -e "\e[1;40m\e[1;20mMods: $mods \e[0m"
-    echo ""
+echo -e "\e[1;40m
+\e[1;20mName: $nname
+\e[1;40m\e[1;20mGame IP:Port $ip
+\e[1;40m\e[1;20mQuery Port: $port\e[0m"
     echo ""
     read -p $'\e[1;40m\e[36mPress ENTER to launch DayZ with mods.\e[0m'
 #    read -p 'Press ENTER to launch DayZ with mods.'
