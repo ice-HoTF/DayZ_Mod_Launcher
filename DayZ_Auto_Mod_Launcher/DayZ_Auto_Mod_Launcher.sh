@@ -328,8 +328,9 @@ for modid in "${INPUT[@]}"; do
     local modpath="${dir_workshop}/${modid}" 
     local modmeta="${modpath}/meta.cpp"  
     local modname="$(gawk 'match($0,/name\s*=\s*"(.+)"/,m){print m[1];exit}' "${modmeta}")"
-    echo -e "\e[1;40m\e[1;32m| Mod Name: ${modname} | Mod Id: ${modid} | Mod Link: ${modlink} | \e[0m"
-
+    echo -e "\e[1;40m\n
+\e[1;32m| Mod Name: ${modname} | Mod Id: ${modid} | Mod Link: ${modlink} |
+\e[0m"
     ln -sr -f "${modpath}" "${dir_dayz}/${modlink}"
     MODS+=("${modlink}")
     sleep 0.1
