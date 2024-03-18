@@ -366,7 +366,8 @@ echo -e "\e[1;40m
 	* ) echo -e "\e[1;40m\e[1;31mInvalid response..\e[0m";
 		exit 1;;
     esac
-    
+    echo ""
+    echo ""    
     echo -e "\e[1;40m\e[1;20mType in a filename:\e[0m"
     sleep 0.5
     read fname
