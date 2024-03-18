@@ -362,7 +362,6 @@ echo -e "\e[1;40m
     read -s -n1 -p $'\e[1;40m
 \e[1;40mPress " S " to Save Launch Script for this Server \n
 \e[31mPress " Q " to Quit Launcher\e[0m' sq
-#    read -p $'\e[1;40m\e[20mCreate launch script for this server in $HOME directory? (y/n)  \e[0m' yn
     echo ""
     case $sq in 
 	s ) sleep 0.1;;
