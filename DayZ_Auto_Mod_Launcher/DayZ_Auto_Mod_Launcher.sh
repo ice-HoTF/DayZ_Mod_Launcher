@@ -308,7 +308,7 @@ if ! [[ -d "${modpath}" ]]; then
    echo -e "\e[1;40m| Mod Id: ${modid} | \e[1;40mMod Link: ${modlink} |\e[0m"
    echo ""   
    run_steam steam://url/CommunityFilePage/${modid}+workshop_download_item 221100 ${modid} && wait
-   steam steam://open/library
+   run_steam steam://open/library
    sleep 0.5
 
   continue
@@ -373,7 +373,7 @@ echo -e "\e[1;40m
     read fname
     cat >$fname.sh << ENDMASTER
 
-steam -applaunch 221100 "-mod=$mods" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+run_steam -applaunch 221100 "-mod=$mods" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
 
 ENDMASTER
 echo -e "\e[1;40m\e[1;36mLaunch script created: \e[0m\e[1;40m\e\e[1;32m$HOME/$fname.sh\e[0m"
