@@ -348,7 +348,7 @@ echo -e "\e[1;40m
 #    read -p 'Press ENTER to launch DayZ with mods.'
     echo ""
 #    echo -e "\e[1;40m""\e[0m"
-#    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
+    steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
     echo -e "\e[1;40mLaunch command for this server:\n\nsteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
