@@ -188,8 +188,6 @@ query_server_api() {
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 
-
-  
 sleep 0.25
 if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
 rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf  
@@ -345,9 +343,7 @@ echo -e "\e[1;40m
 \e[1;40m\e[1;20mQuery Port: $port\e[0m"
     echo ""
     read -p $'\e[1;40m\e[36mPress ENTER to launch DayZ with mods.\e[0m'
-#    read -p 'Press ENTER to launch DayZ with mods.'
     echo ""
-#    echo -e "\e[1;40m""\e[0m"
     steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
