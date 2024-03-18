@@ -222,7 +222,9 @@ case ${pmrw} in
 	p ) echo ""
 	    echo ""
 	    echo ""
-	    echo -e "\e[1;40m\e[1;48mChecking Server Mods ..\e[0m" 
+	    echo -e "\e[1;40m\n
+\e[1;48mChecking Server Mods ..
+\e[0m" 
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
@@ -317,7 +319,9 @@ fi
  
 if (( missing == 1 )); then
     echo ""
-read -p $'\e[1;40m\e[36mWait for Steam to download the mods and then press ENTER.\e[0m' foo
+read -p $'\e[1;40m\n
+\e[36mWait for Steam to download the mods and then press ENTER.
+\e[0m' foo
     echo ""
     echo ""
 fi
@@ -338,38 +342,50 @@ for modid in "${INPUT[@]}"; do
 done
 
     echo ""
-echo -e "\e[1;40m
+echo -e "\e[1;40m\n
 \e[1;20mName: $nname
 \e[1;40m\e[1;20mGame IP:Port $ip
-\e[1;40m\e[1;20mQuery Port: $port\e[0m"
+\e[1;40m\e[1;20mQuery Port: $port
+\e[0m"
     echo ""
-    read -p $'\e[1;40m\e[36mPress ENTER to launch DayZ with mods.\e[0m'
+    read -p $'\e[1;40m\n
+\e[36mPress ENTER to launch DayZ with mods.
+\e[0m'
     echo ""
     steam -applaunch 221100 -mod=${mods} -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
     echo ""
     echo ""
-    echo -e "\e[1;40mLaunch command for this server:\n\nsteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e[0m"
+    echo -e "\e[1;40m\n
+Launch command for this server:\n\nsteam -applaunch 221100 \"-mod=$mods\" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty\e
+[0m"
     echo ""
     echo ""
-    echo -e "\e[1;40m\e[1;36mStarting DayZ.. Please Wait..\e[0m"
+    echo -e "\e[1;40m\n
+\e[1;36mStarting DayZ.. Please Wait..
+\e[0m"
     echo ""
     sleep 2
     echo ""
 
-    read -s -n1 -p $'\e[1;40m
+    read -s -n1 -p $'\e[1;40m\n
 \e[1;40mPress " S " to Save Launch Script for this Server \n
-\e[31mPress " Q " to Quit Launcher\e[0m' sq
+\e[31mPress " Q " to Quit Launcher
+\e[0m' sq
     echo ""
     case $sq in 
 	s ) sleep 0.1;;
 	q ) echo -e "\e[1;40m\e[1;33mExiting..\e[0m";
 		exit;;
-	* ) echo -e "\e[1;40m\e[1;31mInvalid response..\e[0m";
+	* ) echo -e "\e[1;40m\n
+\e[1;31mInvalid response..
+\e[0m";
 		exit 1;;
     esac
     echo ""
     echo ""    
-    echo -e "\e[1;40m\e[1;20mType in a filename:\e[0m"
+    echo -e "\e[1;40m\n
+\e[1;20mType in a filename:
+\e[0m"
     sleep 0.5
     read fname
     cat >$fname.sh << ENDMASTER
@@ -377,7 +393,9 @@ echo -e "\e[1;40m
 run_steam -applaunch 221100 "-mod=$mods" -connect=${ip} --port ${port} -name=${nname} -nolauncher -world=empty
 
 ENDMASTER
-echo -e "\e[1;40m\e[1;36mLaunch script created: \e[0m\e[1;40m\e\e[1;32m$HOME/$fname.sh\e[0m"
+echo -e "\e[1;40m\n
+\e[1;36mLaunch script created: \e[0m\e[1;40m\e\e[1;32m$HOME/$fname.sh
+\e[0m"
 echo ""
 exit
 }
