@@ -33,7 +33,7 @@ This script can launch modded servers and vanilla servers.
 3_2: Static Mod Setup (Set IP:Port, Query Port and Username in the script file. See line 73 ish in the script)
 \
 \
-4:Wait for mods to download and click enter.
+4: Wait for mods to download and click enter.
 \
 \
 5: DayZ launches with mods.
