@@ -26,10 +26,12 @@ How To:
 Screenshots:
 Normal Mod Setup:
 \
+\
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/a78da495-d0dd-4b26-8ae2-abe6c02f76cc)
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/796c8620-f653-4295-96de-142a1b2160e1)
 
 Static Mod Setup
+\
 \
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/5162ca62-015b-4b44-bfce-79975b008b04)
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/3d7ca623-3be0-412e-9e7f-b35b008006ce)
