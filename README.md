@@ -60,7 +60,7 @@ Static Mod Setup
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/ffb120a9-36c5-443b-98f7-0ca0abc5ee9a)
 \
 \
-![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/5162ca62-015b-4b44-bfce-79975b008b04)
+![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/530f22d4-5d84-4d2c-b349-2bcc1ed9ee25)
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/3d7ca623-3be0-412e-9e7f-b35b008006ce)
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/fdd9d610-498b-483d-8121-7ac0da1ae00c)
 
