@@ -28,7 +28,11 @@ Screenshots:
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/3d7ca623-3be0-412e-9e7f-b35b008006ce)
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/fdd9d610-498b-483d-8121-7ac0da1ae00c)
 
-
+\
+\
+\
+\
+\
 
 
 The MIT License (MIT)
