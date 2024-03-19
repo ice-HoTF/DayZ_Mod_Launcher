@@ -1,4 +1,4 @@
-# DayZ_Mod_Launcher
+# DayZ_Mod_Launcher_For_Linux
 
 **DayZ Linux Mod Launcher!**
 \
