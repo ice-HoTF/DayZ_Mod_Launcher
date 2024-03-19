@@ -32,9 +32,6 @@ Screenshots:
 \
 \
 \
-\
-
-
 The MIT License (MIT)
 
 Copyright (c) 2021-2022 Sebastian Meyer
