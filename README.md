@@ -20,11 +20,11 @@ How To:
 
 1: Add script to your 'home' folder.
 2: Run 'bash DayZ_Mod_Launcher.sh' in the terminal.
-
+\
 3: Choose between two choices:
 3_1: Normal Mod Setup (Type/Paste IP:Port, Query Port and Username directly into the terminal when it asks)
 3_2: Static Mod Setup (Set IP:Port, Query Port and Username in the script file. See line 73 ish in the script)
-
+\
 4:Wait for mods to download and click enter.
 5: DayZ launches with mods.
 \
