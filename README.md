@@ -22,7 +22,9 @@ How To:
 
 4:Wait for mods to download and click enter.
 5: DayZ launches with mods.
-
+\
+\
+\
 Screenshots:
 Normal Mod Setup:
 \
