@@ -1,6 +1,6 @@
 # DayZ_Mod_Launcher
 
-DayZ Linux Mod Launcher!
+**DayZ Linux Mod Launcher!**
 \
 \
 Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
@@ -16,8 +16,11 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
+\
 **How To:**
-
+\
+\
+\
 1: Add script to your 'home' folder.
 \
 \
