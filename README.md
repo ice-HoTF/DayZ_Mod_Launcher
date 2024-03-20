@@ -54,7 +54,7 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
-**Normal Mod Setup**: (With mods missing)
+**Normal Mod Setup**: (With mods missing and I clicked "Play DayZ" in the menu)
 \
 \
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/9f50600f-1ebd-4918-9883-2a9ddf88099c)
@@ -64,7 +64,7 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
-**Static Mod Setup** (With mods already installed)
+**Static Mod Setup** (With mods already installed and I clicked "Play DayZ" in the menu)
 \
 \
 ![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/ffb120a9-36c5-443b-98f7-0ca0abc5ee9a)
