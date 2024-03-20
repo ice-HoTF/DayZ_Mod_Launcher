@@ -6,7 +6,6 @@
 **https://github.com/ice-HoTF/DayZ_Mod_Launcher**
 \
 \
-https://github.com/ice-HoTF/DayZ_Mod_Launcher
 \
 \
 \
