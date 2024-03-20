@@ -1,7 +1,9 @@
 **DayZ Auto-Mod Launcher for Linux**
 \
 \
-<# Zad .5> **#New and better launcher: https://github.com/ice-HoTF/DayZ_Mod_Launcher**
+<# Zad .10> **#New and better launcher: 
+\
+<# Zad .10> https://github.com/ice-HoTF/DayZ_Mod_Launcher**
 \
 \
 https://github.com/ice-HoTF/DayZ_Mod_Launcher
