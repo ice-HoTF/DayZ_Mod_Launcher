@@ -4,7 +4,6 @@
 **https://github.com/ice-HoTF/DayZ_Mod_Launcher**
 \
 \
-\
 **DayZ Auto-Mod Launcher for Linux**
 \
 \
