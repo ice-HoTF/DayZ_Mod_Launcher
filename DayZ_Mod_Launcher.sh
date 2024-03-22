@@ -82,7 +82,8 @@ ppath=/home/$USER/
 
 sleep 0.1;;
 
-*) echo "invalid option";;
+*) echo "invalid option";
+   exit;;
 
 esac
 
