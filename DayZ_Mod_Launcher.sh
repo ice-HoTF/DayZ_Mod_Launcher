@@ -449,7 +449,7 @@ done
     echo ""    
     echo -e "\e[1;40m\n
 \e[1;20m Press ' P ' to Play DayZ\n    
-\e[1;94m Press ' S ' to Save a Launch Script for this Server in 'home/$USER/'\n
+\e[1;94m Press ' S ' to Save a Launch Script for this Server in 'home/$USER/' \n
 \e[1;36m Press ' A ' to Save an Alias for the Server Launch Script \n
 \e[1;31m Press ' Q ' to Quit Launcher
 \e[0m"
