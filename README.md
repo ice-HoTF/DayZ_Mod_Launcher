@@ -1,7 +1,7 @@
-# DayZ_Mod_Launcher_For_Linux
+# DayZ_Auto_Mod_Launcher_For_Linux (**FLATPAK STEAM NOT SUPPORTED**)
 \
 \
-**DayZ Linux Mod Launcher!**
+**DayZ Auto Linux Mod Launcher!**
 \
 \
 Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
