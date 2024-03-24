@@ -72,7 +72,7 @@ sleep 0.5;;
 
 # Replace this server info with your server info..
 
-SSERVER=71.17.150.186:2322  # IP-Adress:Port
+SSERVER=71.27.252.186:2322  # IP-Adress:Port
 
 PPORT=2323 		    # Query Port
 
