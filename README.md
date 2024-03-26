@@ -1,7 +1,9 @@
-# DayZ_Mod_Launcher_For_Linux
+# DayZ_Auto_Mod_Launcher_For_Linux 
+\
+**FLATPAK STEAM NOT SUPPORTED**
 \
 \
-**DayZ Linux Mod Launcher!**
+**DayZ Auto Linux Mod Launcher!**
 \
 \
 Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer https://github.com/bastimeyer/dayz-linux-cli-launcher
@@ -54,26 +56,8 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
-**Normal Mod Setup**: (With mods missing and I clicked "Play DayZ" in the menu)
+![image](https://github.com/ice-HoTF/DayZ_Auto_Mod_Launcher/assets/162713879/5515aa23-1731-41df-8d1d-13e4e5c57770)
 \
-\
-![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/9f50600f-1ebd-4918-9883-2a9ddf88099c)
-\
-\
-![Mods_Setup_Normal](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/6a52a87b-eb95-493d-9bdc-88d53a23149b)
-\
-\
-\
-**Static Mod Setup** (With mods already installed and I clicked "Play DayZ" in the menu)
-\
-\
-![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/ffb120a9-36c5-443b-98f7-0ca0abc5ee9a)
-\
-\
-![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/530f22d4-5d84-4d2c-b349-2bcc1ed9ee25)
-\
-\
-![image](https://github.com/ice-HoTF/DayZ_Mod_Launcher/assets/162713879/87d0a2fd-7a96-4dcc-9488-a74d9e1d71dd)
 \
 \
 \
