@@ -353,6 +353,10 @@ case ${pmrw} in
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/downloads/*
             sleep 0.1
 	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            sleep 0.1
+            if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
+            rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf  
+            fi
             exit;;
             
     [Ww]* ) echo ""
@@ -364,6 +368,10 @@ case ${pmrw} in
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/downloads/*
             sleep 0.1
 	    rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
+            sleep 0.1
+            if [ -f "/home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf" ] ; then
+            rm /home/$USER/.steam/debian-installation/steamapps/workshop/appworkshop_221100.acf  
+            fi
             exit;;
 
 	* ) echo -e "\e[1;40m\n
