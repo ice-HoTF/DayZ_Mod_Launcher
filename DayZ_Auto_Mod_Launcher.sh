@@ -254,7 +254,7 @@ query_server_api() {
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
   jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing data from API response. Try again in a few seconds"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36m This is a Vanilla SSERVER.\e[0m"; echo ""; echo ""; read -p $'\e[36m Press ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${SSERVER} --PPORT ${PPORT} -name=${NNAME} -nolauncher -world=empty; exit; }
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36m This is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36m Press ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${SSERVER} --PPORT ${PPORT} -name=${NNAME} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 }
