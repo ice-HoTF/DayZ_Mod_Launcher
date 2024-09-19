@@ -10,6 +10,7 @@ Rewritten and modded by: ice_hotf
 Tested with Debian 11 and 12.
 \
 \
+\
 **FLATPAK STEAM NOT SUPPORTED!**
 This script only works with the official steam package: https://wiki.debian.org/Steam
 \
