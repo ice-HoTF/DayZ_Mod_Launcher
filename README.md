@@ -37,7 +37,7 @@ This script can launch modded servers and vanilla servers.
 3: Choose between two choices:
 \
 \
-3_1: Normal Mod Setup (Type/Paste IP:Port, Query Port and Username directly into the terminal when it asks)
+3_1: Normal Mod Setup (Type/Paste IP:Port, Query Port and Username directly into the terminal when it asks for user input)
 \
 \
 3_2: Static Mod Setup (Set IP:Port, Query Port and Username in the script file. (Line 66 in the script)
