@@ -46,7 +46,7 @@ This script can launch modded servers and vanilla servers.
 4: Wait for mods to download and click enter.
 \
 \
-5: DayZ launches with mods.
+5: DayZ launch with mods and Join Server.
 \
 \
 \
