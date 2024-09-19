@@ -71,7 +71,7 @@ Static Mod Setup:
 Mods Menu And Save Menu:
 \
 \
-![menu](https://github.com/user-attachments/assets/2b7489df-ba08-4b9a-9e80-8e98bdcd6f13)
+![menu](https://github.com/user-attachments/assets/899bdf04-9f58-4a7d-af13-609427e5acb1)
 \
 \
 \
