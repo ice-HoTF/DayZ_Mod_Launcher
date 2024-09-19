@@ -479,8 +479,8 @@ if ! [[ -d "${modpath}" ]]; then
 
     missing=1
     echo -e "\n
-  MOD MISSING: ${modid}: $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}")
-  DOWNLOADING MOD: ${modid}...
+ MOD MISSING: ${modid}: $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}")
+ DOWNLOADING MOD: ${modid}...
   ";
     echo ""
     steam steam+workshop_download_item 221100 ${modid} && wait
