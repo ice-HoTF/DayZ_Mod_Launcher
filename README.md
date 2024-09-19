@@ -30,10 +30,10 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
-1: Add script to your 'home' folder.
+1: Add script 'DayZ_Auto_Mod_Launcher.sh' to your 'home' folder.
 \
 \
-2: Run 'bash DayZ_Mod_Launcher.sh' in the terminal.
+2: Run 'bash DayZ_Auto_Mod_Launcher.sh' in the terminal.
 \
 \
 3: Choose between two choices:
