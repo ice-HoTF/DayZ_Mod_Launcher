@@ -70,9 +70,9 @@ sleep 0.5;;
 
 # Replace this server info with your server info..
 echo ""
-SSERVER=65.109.89.237:2502  # IP-Adress:Port
+SSERVER=87.236.196.137:2302  # IP-Adress:Port
 
-PPORT=27018 		    # Query Port
+PPORT=15001 		    # Query Port
 
 NNAME=ice       	    # Username
 
@@ -126,8 +126,6 @@ MODS2=()
 PARAMS=()
 IP=()
 PORT=()
-SDIR=/home/jones/.steam/debian-installation/steamapps/workshop/downloads/
-#SDIR2=/home/jones/.steam/debian-installation/steamapps/workshop/temp/
 
 declare -A DEPS=(
 
@@ -503,6 +501,7 @@ if ! [[ -d "${modpath}" ]]; then
 \e[0m";
     echo ""
     steam steam+workshop_download_item 221100 ${modid} && wait
+
   continue
 fi
 
@@ -510,14 +509,20 @@ done
 
 if (( missing == 1 )); then
 
-
-   echo -e "\e[1;44m\n
-\e[1;30m Downloading Mods.. Please Wait..
+   echo -e "\e[1;44m\n 
+\e[1;30m Downloading Mods. Please wait..
 \e[0m"
-   until [ "$(echo "$SDIR/"*)" = "$SDIR/*" ] && sleep 5 && [ "$(echo "$SDIR/"*)" = "$SDIR/*" ]
+   sleep 10
+   until [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ] && sleep 5 && [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ]; 
    do
-   sleep 1
+   echo -e "\e[1;44m\n 
+\e[1;30m ..Downloading Mods. Please wait..
+\e[0m"
+   sleep 10
    done
+   echo -e "\e[1;40m\n 
+\e[1;32m Mods Finished Downloading.
+\e[0m"
 fi
     echo ""
     missing=0
@@ -553,7 +558,7 @@ echo -e "\e[1;40m\n
 \e[1;31m Starting DayZ.. Please Wait..
 \e[0m\n";
 
-steam -applaunch 221100 "-mod=$mods" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
+steam -applaunch 221100 "-mod=$MODS" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
            echo "";
 	exit;
 }
