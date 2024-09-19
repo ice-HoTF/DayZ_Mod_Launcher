@@ -1,7 +1,6 @@
 # DayZ_Auto_Mod_Launcher_For_Linux 
 \
 \
-\
 **DayZ Auto Linux Mod Launcher!**
 \
 \
