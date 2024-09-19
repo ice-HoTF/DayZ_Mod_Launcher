@@ -1,6 +1,5 @@
 # DayZ_Auto_Mod_Launcher_For_Linux 
 \
-**FLATPAK STEAM NOT SUPPORTED!**
 \
 \
 **DayZ Auto Linux Mod Launcher!**
@@ -15,6 +14,7 @@ Rewritten and modded by: ice_hotf
 Tested with Debian 11 and 12.
 \
 \
+**FLATPAK STEAM NOT SUPPORTED!**
 Tested with the official steam package: https://wiki.debian.org/Steam
 \
 \
