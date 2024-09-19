@@ -72,7 +72,8 @@ Mods Menu:
 \
 \
 \
-![mods](https://github.com/user-attachments/assets/e571ef91-7d85-40df-8e54-ff6eae1a2cf8)
+![mods](https://github.com/user-attachments/assets/ed9f5240-0c54-43ba-9e5e-41055e3e847d)
+
 \
 \
 \
