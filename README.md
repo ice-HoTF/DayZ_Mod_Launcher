@@ -54,7 +54,7 @@ This script can launch modded servers and vanilla servers.
 \
 \
 \
-![1](https://github.com/user-attachments/assets/5aeb692f-fb42-4802-bfb0-59d7090346be)
+![1](https://github.com/user-attachments/assets/851469a2-3bab-492f-9c53-7f6a426853cf)
 \
 \
 \
