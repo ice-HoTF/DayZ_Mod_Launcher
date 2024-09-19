@@ -516,7 +516,7 @@ if (( missing == 1 )); then
    until [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ] && sleep 5 && [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ]; 
    do
    echo -e "\e[1;44m\n 
-\e[1;30m ..Downloading Mods. Please wait..
+\e[1;30m ..Still Downloading Mods. Please wait..
 \e[0m"
    sleep 10
    done
