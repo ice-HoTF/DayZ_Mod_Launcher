@@ -11,11 +11,10 @@ unset number
 until [[ $number == +([1-2]) ]] ; do
 
 read -s -n1 -p $'
-\e[1;40m
-\e[92m Select:\n
-\e[92m 1) Normal Mod Setup\n
-\e[92m 2) Fixed Mod Setup
-\e[0m\n' number
+ Select:\n
+ 1) Normal Mod Setup\n
+ 2) Fixed Mod Setup
+\n' number
 done
 case ${number} in 
 
@@ -26,31 +25,27 @@ case ${number} in
 [1] )
 
 echo ""
-echo -e "\e[1;40m\n
-\e[1;33m Server Info can be found at \e[1;36m https://www.battlemetrics.com/servers/dayz/
-\e[0m"
+echo -e "\n
+ Server Info can be found at: https://www.battlemetrics.com/servers/dayz/"
 sleep 0.5
 echo ""
 
 ppath=/home/$USER/
 
-echo -e "\e[1;40m\n
-\e[92m Enter IP-Address:Port
-\e[0m"
+echo -e "\n
+ Enter IP-Address:Port"
 sleep 0.5
 read SSERVER
 sleep 0.5
 
-echo -e "\e[1;40m\n
-\e[92m Enter Query Port Number
-\e[0m"
+echo -e "\n
+ Enter Query Port Number"
 sleep 0.5
 read PPORT
 sleep 0.5
 
-echo -e "\e[1;40m\n
-\e[92m Enter Username
-\e[0m"
+echo -e "\n
+ Enter Username"
 sleep 0.5
 read NNAME
 sleep 0.5;;
@@ -78,13 +73,7 @@ NNAME=ice       	    # Username
 
 ppath=/home/$USER/
 
-#echo -e "\e[1;44m\n
-#\e[30m IP-Address:Port: $SSERVER
-#\e[30m Query Port: $PPORT
-#\e[30m Username: $NNAME
-#\e[0m";
 sleep 0.1;;
-
 
 esac
 
@@ -177,7 +166,7 @@ while (( "$#" )); do
 done
 
 err() {
-echo -e >&2 "[\e[1;31m${SELF}][error] ${@}"
+echo -e >&2 "[${SELF}][error] ${@}"
 
 exit 1
 }
@@ -242,17 +231,17 @@ query_server_api() {
   local query
   local response
   echo ""
-  echo -e "\e[1;40m\n
-\e[32m Server IP   : $SSERVER
-\e[32m Query Port  : $PPORT
-\e[32m UserName    : $NNAME
-\e[0m"
+  echo -e "\n
+ Server IP   : $SSERVER
+ Query Port  : $PPORT
+ UserName    : $NNAME"
+ 
   query="$(sed -e "s/@ADDRESS@/${SSERVER%:*}/" -e "s/@PPORT@/${PPORT}/" <<< "${API_URL}")"
   debug "Querying ${query}"
   response="$(curl "${API_PARAMS[@]}" "${query}")"
   debug "Parsing API response"
-  jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err "Missing data from API response. Try again in a few seconds"
-  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e "\e[1;36m This is a Vanilla Server.\e[0m"; echo ""; echo ""; read -p $'\e[36m Press ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${SSERVER} --PPORT ${PPORT} -name=${NNAME} -nolauncher -world=empty; exit; }
+  jq -e '.result.mods | select(type == "array")' >/dev/null 2>&1 <<< "${response}" || err " Missing data from API response. Try again in a few seconds"
+  jq -e '.result.mods[]' >/dev/null 2>&1 <<< "${response}" || { echo ""; echo ""; echo -e " This is a Vanilla Server."; echo ""; echo ""; read -p $' Press ENTER to launch Vanilla DayZ.' foo; echo ""; echo ""; echo "Starting DayZ.. Please Wait.."; echo ""; echo ""; steam -applaunch 221100 -connect=${SSERVER} --PPORT ${PPORT} -name=${NNAME} -nolauncher -world=empty; exit; }
 
   INPUT+=( $(jq -r ".result.mods[] | .steamWorkshopId" <<< "${response}") )
 }
@@ -274,19 +263,18 @@ missing=0
 unset number
 until [[ $number == +([1-4]) ]] ; do
 read -s -n1 -p $'
-\e[1;40m\n
-\e[1;92m 1) Join Server\n
-\e[1;92m 2) Mods Menu\n
-\e[1;92m 3) Save Menu\n
-\e[1;92m 4) Quit
-\e[0m\n' number
+\n
+ 1) Join Server\n
+ 2) Mods Menu\n
+ 3) Save Menu\n
+ 4) Quit
+\n' number
 done
 case $number in
     [1])
 	    echo ""
-	    echo -e "\e[1;40m\n
-\e[1;48m Checking Server Mods ..
-\e[0m" 
+	    echo -e "\n
+ Checking Server Mods .." 
             sleep 0.25
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/downloads/*
             rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
@@ -312,12 +300,12 @@ submenu1(){
 unset number
 until [[ $number == +([1-4]) ]] ; do
 read -s -n1 -p $'
-\e[1;40m\n
-\e[1;92m 1) Verify Mods\n
-\e[1;92m 2) Remove Mods Used By This Server\n
-\e[1;92m 3) Remove All Mods\n
-\e[1;92m 4) Back
-\e[0m\n' number
+\n
+ 1) Verify Mods\n
+ 2) Remove Mods Used By This Server\n
+ 3) Remove All Mods\n
+ 4) Back
+\n' number
 done
 
 #echo ""
@@ -325,9 +313,9 @@ case $number in
 
 "1") ######################################################################################
 
-read -p $'\e[1;40m\n
-\e[31m Press Enter to Verify Mods for this Server.
-\e[0m\n' foo
+read -p $'\n
+ Press Enter to Verify Mods for this Server.
+\n' foo
             sleep 0.25
             for modid in "${INPUT[@]}"; do  
 	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}            
@@ -355,12 +343,11 @@ sleep 0.1;;
     local mods2="$(IFS=";" echo "${MODS2[*]}")"
 done
 
-read -p $'\e[1;40m\n
-\e[31m Press Enter to Delete Mods Used By This Server.
-\e[0m\n' foo
-echo -e "\e[1;40m\n
-\e[31m Mods Deleted:\n ${mods2}\n From Workshop Directory: \n ${dir_workshop}
-\e[0m"
+read -p $'\n
+ Press Enter to Delete Mods Used By This Server.
+\n' foo
+echo -e "\n
+ Mods Deleted:\n ${mods2}\n From Workshop Directory: \n ${dir_workshop}"
             sleep 0.1
 	    for modid in "${INPUT[@]}"; do  
 	    rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/${modid}
@@ -378,11 +365,11 @@ mainmenu "${dir_dayz}" "${dir_workshop}" || exit 1;;
             
 "3") ######################################################################################
     
-read -p $'\e[1;40m\n
-\e[31m Press Enter to Delete All DayZ Mods.
-\e[0m' foo  
+read -p $'\n
+ Press Enter to Delete All DayZ Mods.
+' foo  
             echo ""
-            echo -e "\e[1;31m Deleted All Mods From Steam Workshop Directory:\n \e[1;33m${dir_workshop}"
+            echo -e " Deleted All Mods From Steam Workshop Directory:\n ${dir_workshop}"
             echo "" 
             sleep 0.1
       rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/content/221100/*
@@ -390,8 +377,6 @@ read -p $'\e[1;40m\n
             rm -rf /home/$USER/.steam/debian-installation/steamapps/workshop/downloads/*
             sleep 0.1
       rm -r -f /home/$USER/.steam/debian-installation/steamapps/common/DayZ/@*
-
-#exit;;
 
 mainmenu "${dir_dayz}" "${dir_workshop}" || exit 1;; 
     
@@ -411,20 +396,20 @@ submenu2(){
 unset number
 until [[ $number == +([1-3]) ]] ; do
 read -s -n1 -p $'
-\e[1;40;92m\n
-1) Save Script\n
-2) Save Alias\n
+\n
+1) Save Launch Script For This Server\n
+2) Save Alias For This Server\n
 3) Back
-\e[0m\n' number
+' number
 done
 
 case $number in
 
 "1") ############################# Mods 1 ##########################################################
 
-    echo -e "\e[1;40m\n
-\e[1;92m Choose a filename for the Server Launch Script:
-\e[0m";
+    echo -e "\n
+ Choose a filename for the Server Launch Script:
+ ";
     read fname;	   	   
     echo ""
     unset MODS
@@ -441,17 +426,15 @@ done
     cat > $ppath$fname.sh << ENDMASTER
 steam -applaunch 221100 "-mod=$mods" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
 ENDMASTER
-    echo -e "\e[1;40m\n
-\e[1;92m Launch script created:\e[0m\e[1;40m\e\e[1;32m$ppath$fname.sh
-\e[0m";
+    echo -e "\n
+ Launch script created:$ppath$fname.sh";
    echo "";
 mainmenu "${dir_dayz}" "${dir_workshop}" || exit 1;;
 
 "2") ############################# Mods 2 ##########################################################
 
-    echo -e "\e[1;40m\n
-\e[1;92m Choose alias for the Server Launch Script:
-\e[0m"
+    echo -e "\n
+ Choose alias for the Server Launch Script:"
     echo ""
     unset MODS
 for modid in "${INPUT[@]}"; do 
@@ -467,9 +450,9 @@ done
     read fname
     sed -i -e '1i'"alias $fname='steam -applaunch 221100 \"-mod=$mods\" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty'" /home/$USER/.bash_aliases;
     source /home/$USER/.bash_aliases;
-    echo -e "\e[1;40m\n
-\e[1;92m Alias created in '/home/$USER/.bash_aliases'
-\e[0m";
+    echo -e "\n
+ Alias created in '/home/$USER/.bash_aliases'
+ ";
     echo ""
 mainmenu "${dir_dayz}" "${dir_workshop}" || exit 1;;
 	
@@ -495,10 +478,10 @@ for modid in "${INPUT[@]}"; do
 if ! [[ -d "${modpath}" ]]; then
 
     missing=1
-    echo -e "\e[1;40m\n
-\e[1;31m  MOD MISSING: ${modid}:\e[1;35m $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}")
-\e[1;92m  DOWNLOADING MOD: ${modid}...
-\e[0m";
+    echo -e "\n
+  MOD MISSING: ${modid}: $(sed -e"s/@ID@/${modid}/" <<< "${WORKSHOP_URL}")
+  DOWNLOADING MOD: ${modid}...
+  ";
     echo ""
     steam steam+workshop_download_item 221100 ${modid} && wait
 
@@ -509,21 +492,18 @@ done
 
 if (( missing == 1 )); then
 
-   echo -e "\e[1;44m\n 
-\e[1;32m Please Wait While Steam Download The Mods.
-\e[0m"
+   echo -e "\n 
+ Please Wait While Steam Download The Mods."
    sleep 10
    until [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ] && sleep 5 && [ ! -d "/home/$USER/.steam/debian-installation/steamapps/workshop/temp/221100" ]; 
    do
-   echo -e "\e[1;44m\n 
-\e[1;32m ..Downloading Mods. Please wait..
-\e[0m"
+   echo -e "\n 
+ ..Downloading Mods. Please wait.."
    sleep 10
    done
 echo ""
-   echo -e "\e[1;47m\n 
-\e[1;34m Mods Finished Downloading.
-\e[0m"
+   echo -e "\n 
+ Mods Finished Downloading."
 fi
     echo ""
     missing=0
@@ -540,24 +520,22 @@ fi
 
     done
 
-    echo -e "\e[1;42m\n
-\e[1;30m Name: $NNAME
-\e[1;30m Game IP:Port $SSERVER
-\e[1;30m Query Port: $PPORT
-\e[0m"
+    echo -e "\n
+ Name: $NNAME
+ Game IP:Port $SSERVER
+ Query Port: $PPORT"
     echo ""
 
-    echo -e "\e[1;40m\n
-\e[1;40m\e[1;32m Launch command for this server:\n\n steam -applaunch 221100 \"-mod=$mods\" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
-\e[0m"
-echo ""
-read -p $'\e[1;40m\n
-\e[1;92m Press " Enter " to Launch DayZ
-\e[0m\n' foo
+#   echo -e "\n 
+# Launch command for this server: \n\n steam -applaunch 221100 \"-mod=$mods\" -connect={SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty"
+#echo ""
+read -p $'\n
+ Press " Enter " to Launch DayZ And Join The Server
+\n' foo
 
-echo -e "\e[1;40m\n
-\e[1;31m Starting DayZ.. Please Wait..
-\e[0m\n";
+echo -e "\n
+ Starting DayZ.. Please Wait..
+\n";
 
 steam -applaunch 221100 "-mod=$MODS" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
            echo "";
