@@ -68,7 +68,6 @@ Static Mod Setup:
 \
 \
 \
-\
 Mods Menu:
 \
 \
