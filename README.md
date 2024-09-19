@@ -69,6 +69,22 @@ Static Mod Setup:
 \
 \
 \
+Mods Menu:
+\
+\
+\
+![mods](https://github.com/user-attachments/assets/e571ef91-7d85-40df-8e54-ff6eae1a2cf8)
+\
+\
+\
+Save Menu:
+\
+\
+\
+![save](https://github.com/user-attachments/assets/137f73de-1f1b-4d4e-8b21-5790c012bdb1)
+\
+\
+\
 \
 The MIT License (MIT)
 
