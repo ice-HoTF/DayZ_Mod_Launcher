@@ -1,6 +1,6 @@
 # DayZ_Auto_Mod_Launcher_For_Linux 
 \
-**FLATPAK STEAM NOT SUPPORTED. Steam Must Be Installed With APT**
+**FLATPAK STEAM NOT SUPPORTED! STEAM MUST BE INSTALLED WITH APT**
 \
 \
 **DayZ Auto Linux Mod Launcher!**
