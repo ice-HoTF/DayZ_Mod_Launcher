@@ -61,8 +61,10 @@ Normal Mod Setup:
 \
 \
 \
+Static Mod Setup:
 \
 \
+![2](https://github.com/user-attachments/assets/da809f5e-96f6-4203-bbfc-2328fa5fc575)
 \
 \
 \
