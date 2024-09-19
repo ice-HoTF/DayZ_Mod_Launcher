@@ -15,6 +15,7 @@ Tested with Debian 11 and 12.
 This script only works with the official steam package: https://wiki.debian.org/Steam
 \
 \
+\
 This script will automatically identify missing mods, download them and launch DayZ with the mods. Just follow the instructions in the terminal window.
 \
 \
