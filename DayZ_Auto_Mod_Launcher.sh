@@ -527,7 +527,7 @@ fi
     echo ""
 
 #   echo -e "\n 
-# Launch command for this server: \n\n steam -applaunch 221100 \"-mod=$mods\" -connect={SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty"
+# Launch command for this server: \n\n steam -applaunch 221100 \"-mod=$mods\" -connect={$SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty"
 #echo ""
 read -p $'\n
  Press " Enter " to Launch DayZ And Join The Server
