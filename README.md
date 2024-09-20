@@ -91,6 +91,9 @@ Save Menu:
 \
 \
 \
+FAQ:
+I can't join the server:
+Restart Steam if you can't join the server and try again. On heavily modded servers steam glitches once in a while.
 \
 \
 \
