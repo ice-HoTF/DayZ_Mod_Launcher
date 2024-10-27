@@ -1,5 +1,6 @@
 # DayZ_Auto_Mod_Launcher_For_Linux 
 \
+# Fixed and updated 27/10-24
 \
 Author of the original code: DAYZ Linux CLI LAUNCHER by Bastimeyer
 \
