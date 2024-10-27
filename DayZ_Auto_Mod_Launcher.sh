@@ -537,7 +537,7 @@ echo -e "\n
  Starting DayZ.. Please Wait..
 \n";
 
-steam -applaunch 221100 "-mod=$MODS" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
+steam -applaunch 221100 "-mod=$mods" -connect=${SSERVER} --port ${PPORT} -name=${NNAME} -nolauncher -world=empty
            echo "";
 	exit;
 }
